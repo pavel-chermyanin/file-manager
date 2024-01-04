@@ -48,6 +48,10 @@ export const uploadFile = () => {
           selectedUl.classList.add('nested')
         }
 
+        // Ищем комментарий summary в текстовом содержимом
+        const summaryRegex = /\/\/<summary>\s*\/\/\/([^.]*)\/\/\/<\/summary>/
+        // const match = textContent?.match(summaryRegex)
+
         // Читаем содержимое файла
         const reader = new FileReader()
         reader.onload = function () {
@@ -60,6 +64,13 @@ export const uploadFile = () => {
           newElement.addEventListener('click', function (event) {
             event.stopPropagation()
             selectElement(newElement)
+          })
+
+          newElement.addEventListener('mouseover', function (event) {
+            if (fileItem && fileItem.fileContent.match(summaryRegex)) {
+              const match = fileItem.fileContent.match(summaryRegex)
+              newElement.title = match ? match[1] : ''
+            }
           })
           updateNestedState(newElement)
           state.uploadedFiles.push(fileItem)
