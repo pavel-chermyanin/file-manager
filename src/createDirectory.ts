@@ -23,10 +23,8 @@ export const createDirectory = () => {
     if (state.selectedElement.tagName.toLowerCase() === 'li' && selectedUl) {
       selectedUl.appendChild(newElement)
       selectedUl.classList.add('nested')
-      // updateNestedState(newElement)
     }
 
-    // Добавляем обработчик события для нового элемента
     newElement.addEventListener('click', function (event) {
       event.stopPropagation()
       selectElement(newElement)

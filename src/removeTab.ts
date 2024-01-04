@@ -6,7 +6,6 @@ import { updateTabSelection } from './updateTabSelection'
 export const removeTab = (e: MouseEvent) => {
   const li = document.querySelectorAll('.tree-container li')
   e.preventDefault()
-  console.log('removeTab')
   const parentElement = e.target as HTMLElement
 
   if (confirm('Вы уверены, что хотите удалить этот элемент?')) {
@@ -29,7 +28,6 @@ export const removeTab = (e: MouseEvent) => {
     if (state.selectedTab.$el) {
       selectElement(state.selectedTab.$el)
     }
-    console.log(state.selectedTab)
   } else {
     const fileContentContainer = document.querySelector(
       '.file_editor__file-content'
@@ -37,7 +35,6 @@ export const removeTab = (e: MouseEvent) => {
     if (fileContentContainer) {
       fileContentContainer.innerHTML = ''
     }
-    // const li = document.querySelectorAll('.tree-container li')
     li.forEach((item) => {
       item.classList.remove('selected')
     })

@@ -24,33 +24,33 @@ export const selectElement = (element: HTMLLIElement) => {
   btnRemoveFile.disabled = false
 
   const elementType = state.selectedElement.getAttribute('data-type')
-  const selectedItem = state?.tabs?.find((item) => item.$el === element)
 
-  if (!selectedItem) {
-    const temp = state.uploadedFiles.find((item) => item.$el === element)
-    console.log('create')
-    if (temp) {
-      createEditorTab(temp)
+  if (elementType === 'file') {
+    const selectedItem = state?.tabs?.find((item) => item.$el === element)
+
+    if (!selectedItem) {
+      const temp = state.uploadedFiles.find((item) => item.$el === element)
+      if (temp) {
+        createEditorTab(temp)
+      }
     }
-  }
 
-  if (state.tabs) {
-    state.selectedTab = state.tabs?.find((item) => item.$el === element)
-  }
+    if (state.tabs) {
+      state.selectedTab = state.tabs?.find((item) => item.$el === element)
+    }
 
-  updateTabSelection()
-  btnRemoveFolder.disabled =
-    document.getElementById('tree-container') ===
-    state.selectedElement.parentElement
+    updateTabSelection()
+    btnRemoveFolder.disabled =
+      document.getElementById('tree-container') ===
+      state.selectedElement.parentElement
+
+    btnRemoveFolder.disabled = true
+    btnAddFolder.disabled = true
+    btnUploadFile.disabled = true
+  }
 
   if (elementType === 'folder') {
     btnDownloadFile.disabled = true
     btnRemoveFile.disabled = true
-  }
-
-  if (elementType === 'file') {
-    btnRemoveFolder.disabled = true
-    btnAddFolder.disabled = true
-    btnUploadFile.disabled = true
   }
 }

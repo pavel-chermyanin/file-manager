@@ -2,7 +2,6 @@ import { selectElement } from './selectElement'
 import { State, state } from './main'
 
 export const renameElement = () => {
-  console.log(state.selectedElement)
   if (!state.selectedElement) {
     alert('Выберите файл для переименования')
     return
@@ -10,8 +9,6 @@ export const renameElement = () => {
   const name = prompt('Введите имя директории', '')
 
   if (name !== null && name.trim() !== '') {
-    // const newElement = createTreeElement(name, 'folder')}
-
     const label = state.selectedElement?.querySelector('.label')
     if (label) {
       label.textContent = name

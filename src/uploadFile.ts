@@ -50,7 +50,6 @@ export const uploadFile = () => {
 
         // Ищем комментарий summary в текстовом содержимом
         const summaryRegex = /\/\/<summary>\s*\/\/\/([^.]*)\/\/\/<\/summary>/
-        // const match = textContent?.match(summaryRegex)
 
         // Читаем содержимое файла
         const reader = new FileReader()
