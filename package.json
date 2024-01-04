@@ -17,6 +17,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "file-type": "^18.7.0",
     "highlight.js": "^11.9.0"
   }
 }

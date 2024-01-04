@@ -125,6 +125,8 @@ li .nested {
   overflow: auto;
 }
 .file-editor__tabs {
+  display: flex;
+  gap: 10px;
 }
 .file-editor__tab.selected {
   background-color: rgb(155, 187, 215);

@@ -4,6 +4,7 @@ import { File, state } from './main'
 import { selectElement } from './selectElement'
 import { updateNestedState } from './updateNestedState'
 import { updateTabSelection } from './updateTabSelection'
+// import * as ft from 'file-type'
 
 export const uploadFile = () => {
   if (!state.selectedElement) {
@@ -25,10 +26,22 @@ export const uploadFile = () => {
 
     // Если файл выбран
     if (file) {
+      // Определяем тип файла на основе магических байтов
+      // const fileTypeResult = await fileType.fromBuffer(new Uint8Array(content));
+      // Используем file-type для определения типа файла
+      // const fileType = await ft.fileTypeFromFile(file.name)
+
+      // if (!fileType || fileType.mime.startsWith('image')) {
+      //   alert('Выбранный файл не является поддерживаемым текстовым файлом.')
+      //   return
+      // }
       // Проверяем тип файла
-      if (file.type.startsWith('text')) {
+      if (!file.type.startsWith('image/')) {
         // Создаем новый элемент дерева с типом "file"
         const newElement = createTreeElement(file.name, 'file')
+        if (state.selectedElement) {
+          state.selectedElement?.classList.add('arrow-down')
+        }
 
         const selectedUl = state?.selectedElement?.querySelector('ul')
 
@@ -55,10 +68,8 @@ export const uploadFile = () => {
           })
           updateNestedState(newElement)
           state.uploadedFiles.push(fileItem)
-          
 
           createEditorTab(fileItem)
-          
         }
 
         // Читаем файл как текст
