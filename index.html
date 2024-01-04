@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__list-item">
+            <button class="btn-add-folder">Создать папку</button>
+          </li>
+          <li class="nav__list-item">
+            <button class="btn-remove-folder">Удалить папку</button>
+          </li>
+          <li class="nav__list-item">
+            <button class="upload-file">Загрузить файл</button>
+          </li>
+          <li class="nav__list-item">
+            <button>Скачать файл</button>
+          </li>
+          <li class="nav__list-item">
+            <button>Удалить файл</button>
+          </li>
+          <li class="nav__list-item">
+            <button>Переименовать</button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main">
+      <div class="file-manager">
+        <div class="file-explorer">
+          <div class="tree-container" id="tree-container"></div>
+        </div>
+        <div class="file-editor">
+          <div class="file-editor__tabs"></div>
+          <div class="file_editor__file-content"></div>
+        </div>
+      </div>
+    </main>
+    <script src="./dist/bundle.js"></script>
+  </body>
+</html>
