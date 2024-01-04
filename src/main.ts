@@ -5,12 +5,14 @@ import { updateNestedState } from './updateNestedState'
 import { toggleNested } from './toggleNested'
 import { removeFolder } from './removeFolder'
 import { uploadFile } from './uploadFile'
+import { saveFile } from './saveFile'
 
 export interface File {
   fileName: string
   fileContent: string
   $el: HTMLLIElement | null
   tabElement?: HTMLElement | null
+  ext?: string
 }
 
 export interface State {
@@ -41,6 +43,11 @@ export const btnUploadFile = document.querySelector(
   '.upload-file'
 ) as HTMLButtonElement
 btnUploadFile?.addEventListener('click', uploadFile)
+
+export const btnDownloadFile = document.querySelector(
+  '.btn-download-file'
+) as HTMLButtonElement
+btnDownloadFile?.addEventListener('click', saveFile)
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = createTreeElement('Root', 'folder')

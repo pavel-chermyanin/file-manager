@@ -4,7 +4,10 @@ import { File, state } from './main'
 import { selectElement } from './selectElement'
 import { updateNestedState } from './updateNestedState'
 import { updateTabSelection } from './updateTabSelection'
-// import * as ft from 'file-type'
+
+function getFileExtension(fileName: string) {
+  return fileName.split('.').pop()
+}
 
 export const uploadFile = () => {
   if (!state.selectedElement) {
@@ -22,6 +25,7 @@ export const uploadFile = () => {
       fileContent: '',
       fileName: '',
       $el: null,
+      ext: file ? getFileExtension(file.name) : '',
     }
 
     // Если файл выбран

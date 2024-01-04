@@ -1,24 +1,37 @@
-import { File } from './main'
+import { File, state } from './main'
 
-export const saveFile = (file: File) => {
-  // Создаем Blob с текстовым содержимым файла
-  const blob = new Blob([file.fileContent], { type: 'text/plain' })
+export const saveFile = () => {
+  const fileItem = state.selectedTab
 
-  // Создаем ссылку на Blob
-  const blobUrl = URL.createObjectURL(blob)
+  if (fileItem) {
+    // Создаем Blob с текстовым содержимым файла
+    const blob = new Blob([fileItem.fileContent], { type: 'text/plain' })
 
-  // Создаем ссылку для скачивания файла
-  const downloadLink = document.createElement('a')
-  downloadLink.href = blobUrl
-  downloadLink.download = file.fileName
+    // Создаем ссылку на Blob
+    const blobUrl = URL.createObjectURL(blob)
 
-  // Добавляем ссылку на документ и эмулируем клик по ней для скачивания файла
-  document.body.appendChild(downloadLink)
-  downloadLink.click()
+    // Создаем ссылку для скачивания файла
+    const downloadLink = document.createElement('a')
+    downloadLink.href = blobUrl
+    downloadLink.download = generateFileName(fileItem)
 
-  // Удаляем ссылку из документа
-  document.body.removeChild(downloadLink)
+    // Добавляем ссылку на документ и эмулируем клик по ней для скачивания файла
+    document.body.appendChild(downloadLink)
+    downloadLink.click()
 
-  // Освобождаем ресурсы Blob
-  URL.revokeObjectURL(blobUrl)
+    // Удаляем ссылку из документа
+    document.body.removeChild(downloadLink)
+
+    // Освобождаем ресурсы Blob
+    URL.revokeObjectURL(blobUrl)
+  }
+}
+
+function generateFileName(fileItem: File) {
+  // Проверка наличия расширения и формирование имени файла
+  if (fileItem.ext) {
+    return `${fileItem.fileName}.${fileItem.ext}`
+  } else {
+    return fileItem.fileName
+  }
 }
