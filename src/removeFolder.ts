@@ -1,8 +1,15 @@
-import { state } from './main'
+import {
+  btnAddFolder,
+  btnDownloadFile,
+  btnRemoveFile,
+  btnRemoveFolder,
+  btnUploadFile,
+  state,
+} from './main'
 
 export const removeFolder = () => {
   if (!state.selectedElement) {
-    alert('Выберите элемент, к которому хотите добавить директорию или файл.')
+    alert('Выберите элемент, который хотите удалить.')
     return
   }
   const parentElement = state.selectedElement.parentElement as HTMLElement
@@ -15,4 +22,10 @@ export const removeFolder = () => {
       parentElement.parentElement?.classList.remove('arrow-down')
     }
   }
+  state.selectedElement = null
+  btnRemoveFolder.disabled = false
+  btnAddFolder.disabled = false
+  btnUploadFile.disabled = false
+  btnDownloadFile.disabled = false
+  btnRemoveFile.disabled = false
 }

@@ -1,6 +1,10 @@
 import { File, state } from './main'
 
 export const saveFile = () => {
+  if (!state.selectedElement) {
+    alert('Выберите файл для сохранения')
+    return
+  }
   const fileItem = state.selectedTab
 
   if (fileItem) {

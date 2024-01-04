@@ -82,7 +82,6 @@ export const uploadFile = () => {
         // Файл не текстовый (например, изображение)
         alert('Выбранный файл не является текстовым файлом.')
       }
-      console.log(state.uploadedFiles)
     }
   })
 

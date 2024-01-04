@@ -47,7 +47,13 @@ btnUploadFile?.addEventListener('click', uploadFile)
 export const btnDownloadFile = document.querySelector(
   '.btn-download-file'
 ) as HTMLButtonElement
+
 btnDownloadFile?.addEventListener('click', saveFile)
+
+export const btnRemoveFile = document.querySelector(
+  '.btn-remove-file'
+) as HTMLButtonElement
+btnRemoveFile?.addEventListener('click', removeFolder)
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = createTreeElement('Root', 'folder')

@@ -1,11 +1,12 @@
+import { createEditorTab } from './createEditorTab'
 import {
-  File,
   btnAddFolder,
+  btnDownloadFile,
+  btnRemoveFile,
   btnRemoveFolder,
   btnUploadFile,
   state,
 } from './main'
-import { showFileContent } from './showFileContent'
 import { updateTabSelection } from './updateTabSelection'
 
 export const selectElement = (element: HTMLLIElement) => {
@@ -19,34 +20,48 @@ export const selectElement = (element: HTMLLIElement) => {
   btnRemoveFolder.disabled = false
   btnAddFolder.disabled = false
   btnUploadFile.disabled = false
+  btnDownloadFile.disabled = false
+  btnRemoveFile.disabled = false
 
   const elementType = state.selectedElement.getAttribute('data-type')
+  const selectedItem = state?.tabs?.find((item) => item.$el === element)
+  console.log(state.tabs)
+  if (!selectedItem) {
+    const temp = state.uploadedFiles.find((item) => item.$el === element)
+    console.log('create')
+    // state.selectedTab = selectedItem
+    if (temp) {
+      createEditorTab(temp)
+    }
+  }
 
   if (state.tabs) {
-    console.log('selectedTab')
     state.selectedTab = state.tabs?.find((item) => item.$el === element)
   }
+  //   createEditorTab(
+  //     state.tabs?.find((item) => item.$el === state.selectedElement)
+  //   )
+  // }
+  // if (!selectedItem) {
+  //   // state.tabs?.push()
+  //   createEditorTab(
+  //     state.tabs?.find((item) => item.$el === state.selectedElement)
+  //   )
+  // }
+
   updateTabSelection()
   btnRemoveFolder.disabled =
     document.getElementById('tree-container') ===
     state.selectedElement.parentElement
 
+  if (elementType === 'folder') {
+    btnDownloadFile.disabled = true
+    btnRemoveFile.disabled = true
+  }
+
   if (elementType === 'file') {
     btnRemoveFolder.disabled = true
     btnAddFolder.disabled = true
     btnUploadFile.disabled = true
-
-    console.log(state.selectedElement, state.selectedTab, state.tabs)
-
-    // const fileName =
-    //   state?.selectedElement?.querySelector('.label')?.textContent
-    // const selectedFile = state?.uploadedFiles.find(
-    //   (file) => file.fileName === fileName
-    // ) as File
-
-    // if (selectedFile) {
-    //   // Вызовите функцию showFileContent, передавая выбранный файл
-    //   showFileContent(selectedFile)
-    // }
   }
 }
