@@ -15,15 +15,6 @@ export const createTreeElement = (label: string, type: string) => {
   span.classList.add('label')
   li.append(span)
 
-  if (type === 'file') {
-    const img = document.createElement('img')
-    img.src = 'images/file.jpg'
-    img.alt = 'file img'
-    img.classList.add('file-icon')
-
-    li.append(img)
-  }
-
   const ul = document.createElement('ul')
   li.append(ul)
 

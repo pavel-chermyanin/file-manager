@@ -6,6 +6,7 @@ import { toggleNested } from './toggleNested'
 import { removeFolder } from './removeFolder'
 import { uploadFile } from './uploadFile'
 import { saveFile } from './saveFile'
+import { renameElement } from './renameElement'
 
 export interface File {
   fileName: string
@@ -54,6 +55,9 @@ export const btnRemoveFile = document.querySelector(
   '.btn-remove-file'
 ) as HTMLButtonElement
 btnRemoveFile?.addEventListener('click', removeFolder)
+
+export const btnRename = document.querySelector('.rename') as HTMLButtonElement
+btnRename?.addEventListener('click', renameElement)
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = createTreeElement('Root', 'folder')

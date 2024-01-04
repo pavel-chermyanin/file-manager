@@ -30,15 +30,6 @@ export const uploadFile = () => {
 
     // Если файл выбран
     if (file) {
-      // Определяем тип файла на основе магических байтов
-      // const fileTypeResult = await fileType.fromBuffer(new Uint8Array(content));
-      // Используем file-type для определения типа файла
-      // const fileType = await ft.fileTypeFromFile(file.name)
-
-      // if (!fileType || fileType.mime.startsWith('image')) {
-      //   alert('Выбранный файл не является поддерживаемым текстовым файлом.')
-      //   return
-      // }
       // Проверяем тип файла
       if (!file.type.startsWith('image/')) {
         // Создаем новый элемент дерева с типом "file"
