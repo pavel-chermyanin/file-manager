@@ -1,12 +1,14 @@
 :root {
   --header-height: 40px;
   --primary-color: #eee;
-  --secondary-color: #dedada;
+  --secondary-color: #ededed75;
 }
 
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
 }
 p,
 div,
@@ -26,7 +28,7 @@ li {
   height: var(--header-height);
   display: flex;
   align-items: center;
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
 }
 .nav {
 }
@@ -49,14 +51,25 @@ li {
   padding-top: 10px;
   display: flex;
   height: calc(100vh - var(--header-height) - 10px);
+  background-color: var(--secondary-color);
 }
 .file-explorer {
   flex: 2;
-  background-color: azure;
   padding: 0 10px 10px 30px;
   overflow: auto;
+  border-right: 10px solid var(--primary-color);
 }
-.tree-container {
+.tree-container .wrapper-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tree-container li + li {
+  margin-top: 5px;
+}
+.tree-container li > ul {
+  margin-top: 5px;
 }
 
 .folder {
@@ -69,6 +82,7 @@ li {
   width: 15px;
   background-image: url(./icons/folder.svg);
   background-size: contain;
+  opacity: 0.8;
 }
 
 .file .type-icon {
@@ -82,10 +96,10 @@ li {
 .folder .toggle-icon {
   display: none;
   position: absolute;
-  left: -20px;
-  height: 20px;
-  width: 20px;
-  background-color: cadetblue;
+  top: 2px;
+  left: -15px;
+  height: 12px;
+  width: 12px;
   background-image: url(./icons/chevron-right.svg);
 }
 
@@ -117,7 +131,7 @@ li .nested {
 }
 
 .tree-container .selected {
-  background-color: aqua;
+  background-color: var(--primary-color);
 }
 
 .file-editor {
@@ -126,24 +140,39 @@ li .nested {
 }
 .file-editor__tabs {
   display: flex;
-  gap: 10px;
+  gap: 4px;
+  margin-left: 5px;
+  padding-left: 3px;
 }
+
+.file-editor__tabs:has(> .file-editor__tab) {
+  border-bottom: 3px solid rgb(223, 202, 243);
+}
+
 .file-editor__tab {
   position: relative;
+  padding: 7px 20px 5px;
+  border: 2px solid rgb(238, 230, 246);
+  border-bottom: none;
 }
 .file-editor__tab .close-icon {
   position: absolute;
-  right: -7px;
+  right: 3px;
   top: 0;
   color: red;
 }
 .file-editor__tab.selected {
-  background-color: rgb(155, 187, 215);
+  border: 2px solid rgb(218, 189, 245);
+  border-bottom: none;
+  /* background-color: rgb(155, 187, 215); */
 }
 
 .file_editor__file-content {
-  height: calc(100% - 20px);
+  height: calc(100% - 35px);
   overflow: auto;
   display: flex;
   flex-grow: 0;
+}
+.hljs {
+  background: none;
 }

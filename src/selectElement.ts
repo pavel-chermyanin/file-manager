@@ -25,11 +25,10 @@ export const selectElement = (element: HTMLLIElement) => {
 
   const elementType = state.selectedElement.getAttribute('data-type')
   const selectedItem = state?.tabs?.find((item) => item.$el === element)
-  console.log(state.tabs)
+
   if (!selectedItem) {
     const temp = state.uploadedFiles.find((item) => item.$el === element)
     console.log('create')
-    // state.selectedTab = selectedItem
     if (temp) {
       createEditorTab(temp)
     }
@@ -38,16 +37,6 @@ export const selectElement = (element: HTMLLIElement) => {
   if (state.tabs) {
     state.selectedTab = state.tabs?.find((item) => item.$el === element)
   }
-  //   createEditorTab(
-  //     state.tabs?.find((item) => item.$el === state.selectedElement)
-  //   )
-  // }
-  // if (!selectedItem) {
-  //   // state.tabs?.push()
-  //   createEditorTab(
-  //     state.tabs?.find((item) => item.$el === state.selectedElement)
-  //   )
-  // }
 
   updateTabSelection()
   btnRemoveFolder.disabled =

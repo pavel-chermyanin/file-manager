@@ -6,14 +6,19 @@ export const createTreeElement = (label: string, type: string) => {
   li.classList.add(type)
   li.append(toggleIcon)
 
+  const wrapperLabel = document.createElement('div')
+  wrapperLabel.className = 'wrapper-label'
+
   const typeIcon = document.createElement('span')
   typeIcon.classList.add('type-icon')
-  li.append(typeIcon)
+  wrapperLabel.append(typeIcon)
 
   const span = document.createElement('span')
   span.textContent = label
   span.classList.add('label')
-  li.append(span)
+  wrapperLabel.append(span)
+
+  li.appendChild(wrapperLabel)
 
   const ul = document.createElement('ul')
   li.append(ul)
