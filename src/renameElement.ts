@@ -2,6 +2,11 @@ import { selectElement } from './selectElement'
 import { State, state } from './main'
 
 export const renameElement = () => {
+  console.log(state.selectedElement)
+  if (!state.selectedElement) {
+    alert('Выберите файл для переименования')
+    return
+  }
   const name = prompt('Введите имя директории', '')
 
   if (name !== null && name.trim() !== '') {
