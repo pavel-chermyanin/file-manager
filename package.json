@@ -4,7 +4,8 @@
   "description": "",
   "main": "bundle.js",
   "scripts": {
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production",
+    "start": "webpack --mode=production --config webpack.config.js"
   },
   "keywords": [],
   "author": "",
