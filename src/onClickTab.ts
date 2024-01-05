@@ -4,13 +4,13 @@ import { updateTabSelection } from './updateTabSelection'
 
 export const onClickTab = (e: MouseEvent) => {
   e.preventDefault()
-
+  console.log(e.currentTarget)
   // по клику на табу
   // находим file из state
   const file = state.tabs?.find((item) => {
-    const el = item.tabElement?.querySelector('.label')
+    const el = item.tabElement
     if (el) {
-      return el === (e.target as HTMLElement)
+      return el === (e.currentTarget as HTMLElement)
     }
   })
 

@@ -73,6 +73,15 @@ li {
   margin-top: 5px;
 }
 
+.tree-container li .label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tree-container li .type-icon {
+  flex-shrink: 0;
+}
+
 .folder {
   position: relative;
 }
@@ -139,14 +148,43 @@ li .nested {
   flex: 3;
   overflow: auto;
 }
+
+.file-editor__inner {
+}
 .file-editor__tabs {
   display: flex;
   gap: 4px;
   margin-left: 5px;
   padding-left: 3px;
+  width: fit-content;
+}
+.file-editor__tabs-scroll {
+  overflow-y: auto;
+  position: relative;
 }
 
-.file-editor__tabs:has(> .file-editor__tab) {
+.file-editor__tabs-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Стили для блока прокрутки (thumb) */
+.file-editor__tabs-scroll::-webkit-scrollbar-thumb {
+  background-color: #4caf50; /* Цвет thumb */
+  border-radius: 2px; /* Скругленные углы thumb */
+}
+
+/* Стили для трека (track) */
+.file-editor__tabs-scroll::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Цвет track */
+}
+
+/* Стили для кнопок (arrow buttons) */
+.file-editor__tabs-scroll::-webkit-scrollbar-button {
+  display: none; /* Скрыть кнопки */
+}
+
+.file-editor__tabs-scroll:has(.file-editor__tab) {
   border-bottom: 3px solid rgb(223, 202, 243);
 }
 
@@ -155,6 +193,15 @@ li .nested {
   padding: 7px 20px 5px;
   border: 2px solid rgb(238, 230, 246);
   border-bottom: none;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 100px;
+  text-align: center;
+}
+
+.file-editor__tab .label {
+  white-space: nowrap;
 }
 .file-editor__tab .close-icon {
   position: absolute;
@@ -172,10 +219,31 @@ li .nested {
 }
 
 .file_editor__file-content {
-  height: calc(100% - 35px);
+  height: calc(100% - 45px);
   overflow: auto;
   display: flex;
   flex-grow: 0;
+}
+.file_editor__file-content::-webkit-scrollbar {
+  width: 10px; /* Ширина полосы прокрутки */
+  height: 10px;
+}
+
+/* Стили для блока прокрутки (thumb) */
+.file_editor__file-content::-webkit-scrollbar-thumb {
+  background-color: #4caf50; /* Цвет thumb */
+  border-radius: 2px; /* Скругленные углы thumb */
+}
+
+/* Стили для трека (track) */
+.file_editor__file-content::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Цвет track */
+  cursor: pointer;
+}
+
+/* Стили для кнопок (arrow buttons) */
+.file_editor__file-content::-webkit-scrollbar-button {
+  display: none; /* Скрыть кнопки */
 }
 .hljs {
   background: none;
@@ -205,7 +273,6 @@ li .nested {
   .file-manager {
     display: block;
     height: auto;
-    margin-top: 15px;
   }
   .file-explorer {
     border-right: none;
