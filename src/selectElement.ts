@@ -25,10 +25,13 @@ export const selectElement = (element: HTMLLIElement) => {
 
   const elementType = state.selectedElement.getAttribute('data-type')
 
+  // если выбран файл из tree
   if (elementType === 'file') {
+    // проверим есть ли элемент в массиве табов
     const selectedItem = state?.tabs?.find((item) => item.$el === element)
 
     if (!selectedItem) {
+      // создадим новую табу
       const temp = state.uploadedFiles.find((item) => item.$el === element)
       if (temp) {
         createEditorTab(temp)
@@ -36,13 +39,10 @@ export const selectElement = (element: HTMLLIElement) => {
     }
 
     if (state.tabs) {
+      // если табы есть
+      // выбранный таб становится с родителем element
       state.selectedTab = state.tabs?.find((item) => item.$el === element)
     }
-
-    updateTabSelection()
-    btnRemoveFolder.disabled =
-      document.getElementById('tree-container') ===
-      state.selectedElement.parentElement
 
     btnRemoveFolder.disabled = true
     btnAddFolder.disabled = true
@@ -52,5 +52,11 @@ export const selectElement = (element: HTMLLIElement) => {
   if (elementType === 'folder') {
     btnDownloadFile.disabled = true
     btnRemoveFile.disabled = true
+
+    // папку root нельзя удалить
+    btnRemoveFolder.disabled =
+      document.getElementById('tree-container') ===
+      state.selectedElement.parentElement
   }
+  updateTabSelection()
 }

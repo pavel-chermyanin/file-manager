@@ -9,11 +9,14 @@ export const createEditorTab = (file: File) => {
   const editorTabs = document.querySelector('.file-editor__tabs')
 
   const li = document.createElement('li')
-  li.textContent = file.fileName
   li.classList.add('file-editor__tab')
 
+  const label = document.createElement('span')
+  label.classList.add('label')
+  label.textContent = file.fileName
+  li.append(label)
+
   const span = document.createElement('span')
-  span.textContent = 'x'
   span.classList.add('close-icon')
   li.append(span)
 
